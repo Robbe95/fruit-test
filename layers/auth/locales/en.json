@@ -1,0 +1,21 @@
+{
+  "auth.forgot_password.action": "Send reset link",
+  "auth.forgot_password.description": "Enter your email address and we'll send you a link to reset your password.",
+  "auth.forgot_password.email_placeholder": "Enter your email",
+  "auth.forgot_password.return_to_login": "Return to login",
+  "auth.forgot_password.success_description": "We sent an email with further instructions to {email}",
+  "auth.forgot_password.success_title": "Check your email",
+  "auth.forgot_password.title": "Forgot password?",
+  "auth.login.error_toast.description": "Please check your email and password and try again.",
+  "auth.login.error_toast.title": "Invalid credentials",
+  "auth.login.forgot_password": "Forgot password?",
+  "auth.login.invalid_email_or_password": "Invalid email or password",
+  "auth.login.log_in": "Log in",
+  "auth.login.sign_in_to_continue": "Sign in to continue",
+  "auth.login.welcome_back_name": "Welcome back, {name}",
+  "auth.reset_password.action": "Reset password",
+  "auth.reset_password.description": "Enter your new password below",
+  "auth.reset_password.title": "Reset password",
+  "auth.reset_password.success.action": "Return to login",
+  "auth.reset_password.success.description": "Your password has been reset successfully. You can now log in with your new password."
+}

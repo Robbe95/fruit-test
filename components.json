@@ -1,0 +1,15 @@
+{
+  "$schema": "https://wisemen-digital.github.io/vue-core/_generation",
+  "aliases": {
+    "components": "@base/components/core",
+    "composables": "@base/composables/core",
+    "config": "./layers/base",
+    "icons": "@base/icons",
+    "libs": "@base/libs",
+    "root": "./layers/base",
+    "styles": "@base/assets/styles",
+    "types": "@base/types/core",
+    "utils": "@base/utils/core"
+  },
+  "style": "wisemen"
+}

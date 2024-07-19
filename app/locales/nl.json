@@ -1,0 +1,11 @@
+{
+  "test.login.forgot_password": "Wachtwoord vergeten?",
+  "shared.hello": "Hallo, {name}!",
+  "footer.address": "Adres",
+  "footer.cookie_policy": "Cookie Policy",
+  "footer.copyright": "© {year} Alle rechten voorbehouden",
+  "footer.privacy_policy": "Privacy Policy",
+  "footer.service": "Service",
+  "footer.links": "Links",
+  "todo.logo": "TODO logo"
+}

@@ -1,0 +1,17 @@
+{
+  "i18n-ally.localesPaths": [
+    "layers/base/locales",
+    "layers/cart/locales",
+    "layers/auth/locales",
+    "app/locales"
+  ],
+  "i18n-ally.displayLanguage": "nl",
+  "i18n-ally.enabledFrameworks": [
+    "vue"
+  ],
+  "i18n-ally.keystyle": "flat",
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "javascript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "i18n-ally.sourceLanguage": "en"
+}

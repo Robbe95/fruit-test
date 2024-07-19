@@ -1,0 +1,124 @@
+<script setup lang="ts">
+import AppIcon from '@base/components/core/icon/AppIcon.vue'
+import { useInputStyle } from '@base/components/core/input/input.style'
+import AppLoader from '@base/components/core/loader/AppLoader.vue'
+import { useComponentAttrs } from '@base/composables/core/componentAttrs.composable'
+import type { Icon } from '@base/icons/icons'
+import { computed, useSlots } from 'vue'
+
+const props = withDefaults(defineProps<{
+  /**
+   * The id of the input.
+   * @default null
+   */
+  id?: null | string
+  /**
+   * Whether the input is disabled.
+   * @default false
+   */
+  isDisabled?: boolean
+  /**
+   * Whether the input is invalid.
+   * @default false
+   */
+  isInvalid?: boolean
+  /**
+   * Whether the input is loading.
+   */
+  isLoading?: boolean
+  /**
+   * The left icon of the input.
+   * @default null
+   */
+  iconLeft?: Icon
+  /**
+   * The right icon of the input.
+   * @default null
+   */
+  iconRight?: Icon
+  /**
+   * The placeholder of the input.
+   * @default null
+   */
+  placeholder?: null | string
+  /**
+   * The type of the input.
+   * @default 'text'
+   */
+  type?: 'date' | 'datetime-local' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url'
+}>(), {
+  id: null,
+  isDisabled: false,
+  isInvalid: false,
+  isLoading: false,
+  iconLeft: undefined,
+  iconRight: undefined,
+  placeholder: null,
+  type: 'text',
+})
+
+const model = defineModel<null | string>({
+  required: true,
+})
+
+const slots = useSlots()
+
+const { classAttr, otherAttrs } = useComponentAttrs()
+const inputStyle = useInputStyle()
+
+const containerClasses = computed<string>(() => inputStyle.container({
+  isDisabled: props.isDisabled,
+  isInvalid: props.isInvalid,
+  class: classAttr.value,
+}))
+const leftIconClasses = computed<string>(() => inputStyle.leftIcon())
+const rightIconClasses = computed<string>(() => inputStyle.rightIcon())
+const inputClasses = computed<string>(() => inputStyle.input())
+const loaderClasses = computed<string>(() => inputStyle.loader())
+</script>
+
+<template>
+  <label
+    :aria-disabled="props.isDisabled"
+    :class="containerClasses"
+  >
+    <Component
+      :is="slots.left"
+      v-if="slots.left !== undefined"
+    />
+
+    <AppIcon
+      v-else-if="props.iconLeft !== null && props.iconLeft !== undefined"
+      :icon="props.iconLeft"
+      :class="leftIconClasses"
+    />
+
+    <!-- I'm not sure why, but without the `.stop` modifier, the events seem to fire twice -->
+    <input
+      v-bind="otherAttrs"
+      :id="props.id ?? undefined"
+      v-model="model"
+      :type="props.type"
+      :aria-invalid="props.isInvalid"
+      :disabled="props.isDisabled"
+      :placeholder="props.placeholder ?? undefined"
+      :class="inputClasses"
+    >
+
+    <AppLoader
+      v-if="props.isLoading"
+      :class="loaderClasses"
+    />
+
+    <Component
+      :is="slots.right"
+      v-else-if="slots.right !== undefined"
+    />
+
+    <AppIcon
+      v-else-if="props.iconRight !== null && props.iconRight !== undefined"
+      :icon="props.iconRight"
+      :class="rightIconClasses"
+    />
+  </label>
+</template>

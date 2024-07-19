@@ -1,0 +1,27 @@
+# General
+**/.DS_Store
+**/*.md
+**/LICENSE
+**/.vscode
+
+# Git
+**/.git
+**/.github
+**/.gitattributes
+**/.gitignore
+
+# Docker
+**/.dockerignore
+**/Dockerfile
+
+# Node
+**/.output
+**/.nuxt
+**/node_modules/
+**/dist
+**/npm-debug.log
+
+# Local env files
+.env
+.env.*
+!.env.example

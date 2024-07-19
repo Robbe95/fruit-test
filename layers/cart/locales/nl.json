@@ -1,0 +1,9 @@
+{
+  "cart.cart": "Winkelmand",
+  "cart.order": "Bestelling",
+  "cart.products_count": "Geen producten | Één product | {count} producten",
+  "cart.no_products": "Geen producten",
+  "cart.total_to_pay": "Totaal",
+  "order.finish_order": "Bestelling afronden",
+  "cart.remove": "Verwijderen"
+}
