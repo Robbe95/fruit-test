@@ -1,15 +1,13 @@
 <script setup lang="ts">
 definePageMeta({
-  // middleware: 'auth-middleware',
+  layout: false,
 })
 </script>
 
 <template>
-  <div class="w-full">
-    <MockConstruction />
+  <div class="flex h-dvh w-dvw">
+    <ClientOnly>
+      <MapRender />
+    </ClientOnly>
   </div>
 </template>
-
-<style scoped>
-
-</style>

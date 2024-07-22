@@ -8,7 +8,6 @@ export default defineNuxtConfig({
     '@cart': path.resolve(__dirname, './layers/cart'),
     '~~': path.resolve(__dirname, './disable'),
   },
-
   app: {
     head: {
       title: 'Nuxt Project Template',
@@ -58,8 +57,10 @@ export default defineNuxtConfig({
   imports: {
     scan: false,
   },
+
   modules: [
     '@nuxt/eslint',
+    '@vite-pwa/nuxt',
   ],
   nitro: {
     compressPublicAssets: {
@@ -69,4 +70,114 @@ export default defineNuxtConfig({
       failOnError: false,
     },
   },
+  pwa: {
+    devOptions: {
+      enabled: true,
+    },
+    filename: 'syncWorker.js',
+    includeAssets: [
+      '**/*',
+    ],
+
+    injectRegister: 'auto',
+    manifest: {
+      name: 'Fruitje',
+      background_color: '#ffffff',
+
+      description: 'Fruitje',
+      display: 'standalone',
+      icons: [
+        {
+          sizes: '512x512',
+          src: '/android-chrome-512x512.png',
+          type: 'image/png',
+        },
+        {
+          sizes: '192x192',
+          src: '/android-chrome-192x192.png',
+          type: 'image/png',
+        },
+        {
+          sizes: '180x180',
+          src: '/apple-touch-icon.png',
+          type: 'image/png',
+        },
+        {
+          sizes: '16x16',
+          src: '/favicon-16x16.png',
+          type: 'image/png',
+        },
+        {
+          sizes: '32x32',
+          src: '/favicon-32x32.png',
+          type: 'image/png',
+        },
+      ],
+      scope: '/',
+      short_name: 'Fruitje',
+      start_url: '/',
+      theme_color: 'rgb(23, 23, 23)',
+    },
+    registerType: 'autoUpdate',
+    strategies: 'generateSW',
+    workbox: {
+      globPatterns: [
+        '**/*',
+      ],
+
+      runtimeCaching: [
+        // Doesnt work for stupid safari
+        // {
+        //   handler: 'NetworkOnly',
+        //   method: 'POST',
+        //   options: {
+        //     backgroundSync: {
+        //       name: 'features-queue',
+        //       options: {
+        //         maxRetentionTime: 24 * 60,
+        //         onSync: () => {
+        //           try {
+        //             // @ts-expect-error this works its service worker trust me
+        //             // eslint-disable-next-line no-restricted-globals
+        //             self.clients.matchAll().then((clients) => {
+        //               clients.forEach((client) => client.postMessage('features-queue'))
+        //             })
+        //           }
+        //           catch (error) {
+        //             // Handle errors if necessary
+        //             console.error('Sync failed:', error)
+        //           }
+        //         },
+        //       },
+        //     },
+        //   },
+        //   // urlPattern: /^http:\/\/localhost:8000\/api\/features/,
+        //   urlPattern: /^http:\/\/192.168.2.88:8000\/api\/features/,
+        // },
+        {
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'ol-cache',
+            cacheableResponse: {
+              statuses: [
+                0,
+                200,
+              ],
+            },
+            expiration: {
+              maxAgeSeconds: 60 * 60 * 24 * 365, // <== 365 days
+              maxEntries: 200,
+            },
+          },
+          urlPattern: /^https:\/\/tile\.openstreetmap\.org\/.*/,
+        },
+      ],
+    },
+  },
+  runtimeConfig: {
+    public: {
+      apiBaseUrl: 'http://192.168.2.88:8000', // can be overridden by NUXT_PUBLIC_API_BASE_URL environment variable
+    },
+  },
+  ssr: false,
 })
