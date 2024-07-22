@@ -66,6 +66,11 @@ export default defineNuxtConfig({
     includeAssets: [
       '**/*',
     ],
+    injectManifest: {
+      globPatterns: [
+        '**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}',
+      ],
+    },
     injectRegister: 'auto',
     manifest: {
       name: 'Fruitje',
@@ -102,13 +107,14 @@ export default defineNuxtConfig({
       short_name: 'Fruitje',
       theme_color: 'rgb(23, 23, 23)',
     },
+
     registerType: 'autoUpdate',
+    scope: '/',
     strategies: 'generateSW',
     workbox: {
       globPatterns: [
-        '**/*.{js,css,html,ico,png,svg,txt,woff,woff2,webmanifest}',
+        '**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}',
       ],
-
       runtimeCaching: [
         {
           handler: 'CacheFirst',
@@ -135,5 +141,5 @@ export default defineNuxtConfig({
       apiBaseUrl: 'http://192.168.2.88:8000', // can be overridden by NUXT_PUBLIC_API_BASE_URL environment variable
     },
   },
-  ssr: false,
+  ssr: true,
 })
