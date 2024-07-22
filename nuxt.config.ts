@@ -62,28 +62,18 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@vite-pwa/nuxt',
   ],
-  nitro: {
-    compressPublicAssets: {
-      brotli: true,
-    },
-    prerender: {
-      failOnError: false,
-    },
-  },
   pwa: {
     devOptions: {
       enabled: true,
+      type: 'module',
     },
-    filename: 'syncWorker.js',
     includeAssets: [
       '**/*',
     ],
-
     injectRegister: 'auto',
     manifest: {
       name: 'Fruitje',
       background_color: '#ffffff',
-
       description: 'Fruitje',
       display: 'standalone',
       icons: [
@@ -113,47 +103,17 @@ export default defineNuxtConfig({
           type: 'image/png',
         },
       ],
-      scope: '/',
       short_name: 'Fruitje',
-      start_url: '/',
       theme_color: 'rgb(23, 23, 23)',
     },
     registerType: 'autoUpdate',
     strategies: 'generateSW',
     workbox: {
       globPatterns: [
-        '**/*',
+        '**/*.{js,css,html,ico,png,svg,txt,woff,woff2,webmanifest}',
       ],
 
       runtimeCaching: [
-        // Doesnt work for stupid safari
-        // {
-        //   handler: 'NetworkOnly',
-        //   method: 'POST',
-        //   options: {
-        //     backgroundSync: {
-        //       name: 'features-queue',
-        //       options: {
-        //         maxRetentionTime: 24 * 60,
-        //         onSync: () => {
-        //           try {
-        //             // @ts-expect-error this works its service worker trust me
-        //             // eslint-disable-next-line no-restricted-globals
-        //             self.clients.matchAll().then((clients) => {
-        //               clients.forEach((client) => client.postMessage('features-queue'))
-        //             })
-        //           }
-        //           catch (error) {
-        //             // Handle errors if necessary
-        //             console.error('Sync failed:', error)
-        //           }
-        //         },
-        //       },
-        //     },
-        //   },
-        //   // urlPattern: /^http:\/\/localhost:8000\/api\/features/,
-        //   urlPattern: /^http:\/\/192.168.2.88:8000\/api\/features/,
-        // },
         {
           handler: 'CacheFirst',
           options: {
