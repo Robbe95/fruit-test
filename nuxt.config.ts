@@ -85,7 +85,7 @@ export default defineNuxtConfig({
       name: 'Fruitje',
       background_color: '#ffffff',
       description: 'Fruitje',
-      display: 'fullscreen',
+      display: 'standalone',
       icons: [
         {
           sizes: '512x512',
@@ -113,8 +113,10 @@ export default defineNuxtConfig({
           type: 'image/png',
         },
       ],
+      scope: '/',
       short_name: 'Fruitje',
-      theme_color: 'rgb(23, 23, 23)',
+      start_url: '/',
+      theme_color: '#f69435',
     },
     workbox: {
       globPatterns: [
