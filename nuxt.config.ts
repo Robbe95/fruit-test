@@ -62,6 +62,14 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@vite-pwa/nuxt',
   ],
+
+  nitro: {
+    prerender: {
+      routes: [
+        '/200.html',
+      ],
+    },
+  },
   pwa: {
     includeAssets: [
       '**/*',
@@ -71,12 +79,13 @@ export default defineNuxtConfig({
         '**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}',
       ],
     },
+
     injectRegister: 'auto',
     manifest: {
       name: 'Fruitje',
       background_color: '#ffffff',
       description: 'Fruitje',
-      display: 'standalone',
+      display: 'fullscreen',
       icons: [
         {
           sizes: '512x512',
@@ -107,7 +116,6 @@ export default defineNuxtConfig({
       short_name: 'Fruitje',
       theme_color: 'rgb(23, 23, 23)',
     },
-
     registerType: 'autoUpdate',
     scope: '/',
     strategies: 'generateSW',
