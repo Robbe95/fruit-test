@@ -1,3 +1,4 @@
+import fs from 'node:fs'
 import path from 'node:path'
 
 export default defineNuxtConfig({
@@ -33,6 +34,13 @@ export default defineNuxtConfig({
     },
   ],
 
+  devServer: {
+    https: {
+      cert: fs.readFileSync(path.resolve(__dirname, './server.crt')).toString(),
+      key: fs.readFileSync(path.resolve(__dirname, './server.key')).toString(),
+    },
+  },
+
   devtools: { enabled: true },
 
   eslint: {
@@ -57,12 +65,10 @@ export default defineNuxtConfig({
   imports: {
     scan: false,
   },
-
   modules: [
     '@nuxt/eslint',
     '@vite-pwa/nuxt',
   ],
-
   nitro: {
     prerender: {
       routes: [
@@ -74,13 +80,7 @@ export default defineNuxtConfig({
     includeAssets: [
       '**/*',
     ],
-    injectManifest: {
-      globPatterns: [
-        '**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}',
-      ],
-    },
 
-    injectRegister: 'auto',
     manifest: {
       name: 'Fruitje',
       background_color: '#ffffff',
@@ -116,12 +116,9 @@ export default defineNuxtConfig({
       short_name: 'Fruitje',
       theme_color: 'rgb(23, 23, 23)',
     },
-    registerType: 'autoUpdate',
-    scope: '/',
-    strategies: 'generateSW',
     workbox: {
       globPatterns: [
-        '**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}',
+        '**/*',
       ],
       runtimeCaching: [
         {

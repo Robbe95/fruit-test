@@ -45,7 +45,7 @@ onMounted(() => {
         <ConfigProvider :use-id="useIdFunction">
           <NuxtLoadingIndicator color="#E94935" />
           <NuxtLayout>
-        {{ pwa?.offlineReady ?? '/' }}
+            {{ pwa?.offlineReady ?? '/' }}
 
             <NuxtPage />
           </NuxtLayout>
