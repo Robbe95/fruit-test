@@ -141,5 +141,5 @@ export default defineNuxtConfig({
       apiBaseUrl: 'http://192.168.2.88:8000', // can be overridden by NUXT_PUBLIC_API_BASE_URL environment variable
     },
   },
-  ssr: true,
+  ssr: false,
 })
