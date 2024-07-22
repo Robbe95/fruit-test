@@ -63,10 +63,6 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
   ],
   pwa: {
-    devOptions: {
-      enabled: true,
-      type: 'module',
-    },
     includeAssets: [
       '**/*',
     ],
